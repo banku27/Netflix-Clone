@@ -16,7 +16,7 @@ class BottomNavBar extends StatelessWidget {
           color: Colors.black,
           height: 70,
           child: const TabBar(
-            tabs: <Widget>[
+            tabs: [
               Tab(icon: Icon(Icons.home), text: "Home"),
               Tab(
                 icon: Icon(Icons.search),

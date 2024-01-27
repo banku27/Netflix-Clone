@@ -16,6 +16,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       theme: ThemeData(
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+          ),
+          bodyMedium: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
+        ),
         fontFamily: GoogleFonts.ptSans().fontFamily,
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
