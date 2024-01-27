@@ -32,8 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: Image.asset(
-          'assets/netflix.png',
+        title: Image.asset(
+          'assets/logo.png',
+          height: 50,
+          width: 120,
         ),
         actions: const [
           Padding(
