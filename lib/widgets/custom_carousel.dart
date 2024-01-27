@@ -15,24 +15,24 @@ class CustomCarouselSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return SizedBox(
-        width: size.width,
-        height: (size.height * 0.33 < 300) ? 300 : size.height * 0.33,
-        child: PageView.builder(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          pageSnapping: true,
-          itemCount: 20,
-          itemBuilder: ((context, index) {
-            var url = data.results[index].backdropPath.toString();
-
-            return GestureDetector(
-              onTap: () {},
-              child: LandingCard(
-                image: CachedNetworkImageProvider("$imageUrl$url"),
-                name: data.results[index].name.toString(),
-              ),
-            );
-          }),
-        ));
+      width: size.width,
+      height: (size.height * 0.33 < 300) ? 300 : size.height * 0.33,
+      child: PageView.builder(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        pageSnapping: true,
+        itemCount: 20,
+        itemBuilder: ((context, index) {
+          var url = data.results[index].backdropPath.toString();
+          return GestureDetector(
+            onTap: () {},
+            child: LandingCard(
+              image: CachedNetworkImageProvider("$imageUrl$url"),
+              name: data.results[index].name.toString(),
+            ),
+          );
+        }),
+      ),
+    );
   }
 }

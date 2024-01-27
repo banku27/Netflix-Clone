@@ -18,35 +18,37 @@ class UpcomingMovieCard extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var data = snapshot.data?.results;
-            return Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        headlineText,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.all(3),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data!.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(10.0),
+            return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    headlineText,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      // padding: const EdgeInsets.all(3),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: data!.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20)),
                               child: Image.network(
                                 '$imageUrl${data[index].posterPath}',
                                 fit: BoxFit.fitHeight,
                               ),
-                            );
-                          },
-                        ),
-                      )
-                    ]));
+                            ));
+                      },
+                    ),
+                  )
+                ]);
           } else {
             return const SizedBox.shrink();
           }

@@ -12,7 +12,7 @@ class _MoreScreenState extends State<MoreScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("MoreScreen"),
+        child: Text("More Screen"),
       ),
     );
   }

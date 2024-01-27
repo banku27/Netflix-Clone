@@ -12,7 +12,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Homescreen"),
+        child: Text("Download screen"),
       ),
     );
   }

@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ApiServices apiServices = ApiServices();
+
   late Future<MovieModel> upcomingFuture;
   late Future<MovieModel> nowPlaying;
   late Future<TvSeriesModel> topRatedShows;
@@ -29,33 +30,57 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          FutureBuilder<TvSeriesModel>(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: Image.asset(
+          'assets/netflix.png',
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: Icon(
+              Icons.search,
+              size: 30,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            FutureBuilder<TvSeriesModel>(
               future: topRatedShows,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return CustomCarouselSlider(data: snapshot.data!);
                 }
                 return const SizedBox();
-              }),
-          SizedBox(
-            height: 280,
-            child: UpcomingMovieCard(
-              future: upcomingFuture,
-              headlineText: 'Upcoming Movies',
+              },
             ),
-          ),
-          SizedBox(
-            height: 280,
-            child: UpcomingMovieCard(
-              future: nowPlaying,
-              headlineText: 'Now Playing',
+            const SizedBox(
+              height: 20,
             ),
-          ),
-        ],
+            SizedBox(
+              height: 220,
+              child: UpcomingMovieCard(
+                future: nowPlaying,
+                headlineText: 'Now Playing',
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 220,
+              child: UpcomingMovieCard(
+                future: upcomingFuture,
+                headlineText: 'Upcoming Movies',
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
