@@ -40,10 +40,10 @@ class Result {
   String? backdropPath;
   int id;
   String title;
-  OriginalLanguage originalLanguage;
+  String originalLanguage;
   String originalTitle;
   String overview;
-  String? posterPath;
+  String posterPath;
   MediaType mediaType;
   List<int> genreIds;
   double popularity;
@@ -79,8 +79,7 @@ class Result {
         backdropPath: json["backdrop_path"],
         id: json["id"],
         title: json["title"],
-        originalLanguage:
-            originalLanguageValues.map[json["original_language"]]!,
+        originalLanguage: json["original_language"],
         originalTitle: json["original_title"],
         overview: json["overview"],
         posterPath: json["poster_path"],
@@ -98,7 +97,7 @@ class Result {
         "backdrop_path": backdropPath,
         "id": id,
         "title": title,
-        "original_language": originalLanguageValues.reverse[originalLanguage],
+        "original_language": originalLanguage,
         "original_title": originalTitle,
         "overview": overview,
         "poster_path": posterPath,
@@ -116,15 +115,6 @@ class Result {
 enum MediaType { MOVIE }
 
 final mediaTypeValues = EnumValues({"movie": MediaType.MOVIE});
-
-enum OriginalLanguage { DE, EN, IT, ZH }
-
-final originalLanguageValues = EnumValues({
-  "de": OriginalLanguage.DE,
-  "en": OriginalLanguage.EN,
-  "it": OriginalLanguage.IT,
-  "zh": OriginalLanguage.ZH
-});
 
 class EnumValues<T> {
   Map<String, T> map;

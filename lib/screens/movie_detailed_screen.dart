@@ -105,6 +105,7 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
                               genresText,
                               style: const TextStyle(
                                 color: Colors.grey,
+                                fontSize: 17,
                               ),
                             ),
                           ],
@@ -125,42 +126,50 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
                   const SizedBox(
                     height: 30,
                   ),
-                  const Text(
-                    "More like this",
-                    maxLines: 6,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 50),
                   FutureBuilder(
-                      future: movieRecommendationModel,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          final movie = snapshot.data;
+                    future: movieRecommendationModel,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final movie = snapshot.data;
 
-                          return GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            padding: EdgeInsets.zero,
-                            scrollDirection: Axis.vertical,
-                            itemCount: movie!.results.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    childAspectRatio: 1.5 / 2),
-                            itemBuilder: (context, index) {
-                              return CachedNetworkImage(
-                                imageUrl:
-                                    "$imageUrl${movie.results[index].posterPath}",
-                              );
-                            },
-                          );
-                        }
-                        return const Text("Something Went wrong");
-                      }),
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "More like this",
+                              maxLines: 6,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              scrollDirection: Axis.vertical,
+                              itemCount: movie!.results.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                mainAxisSpacing: 15,
+                                childAspectRatio: 1.5 / 2,
+                              ),
+                              itemBuilder: (context, index) {
+                                return CachedNetworkImage(
+                                  imageUrl:
+                                      "$imageUrl${movie.results[index].posterPath}",
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                      return const Text("Something Went wrong");
+                    },
+                  ),
                 ],
               );
             }
