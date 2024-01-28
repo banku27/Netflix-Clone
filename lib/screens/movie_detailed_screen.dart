@@ -37,21 +37,19 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
     var size = MediaQuery.of(context).size;
     print(widget.movieId);
     return Scaffold(
-      body: FutureBuilder(
-        future: movieDetail,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final movie = snapshot.data;
+      body: SingleChildScrollView(
+        child: FutureBuilder(
+          future: movieDetail,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final movie = snapshot.data;
 
-            String genresText =
-                movie!.genres.map((genre) => genre.name).join(', ');
+              String genresText =
+                  movie!.genres.map((genre) => genre.name).join(', ');
 
-            return Column(
-              children: [
-                SizedBox(
-                  height: size.height * 0.42,
-                  width: size.width,
-                  child: Stack(
+              return Column(
+                children: [
+                  Stack(
                     children: [
                       Container(
                         height: size.height * 0.4,
@@ -78,77 +76,75 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
                       ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25, left: 10, right: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            movie.title,
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 25, left: 10, right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          movie.title,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Text(
+                              movie.releaseDate.year.toString(),
+                              style: const TextStyle(
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Text(
-                            movie.releaseDate.year.toString(),
-                            style: const TextStyle(
-                              color: Colors.grey,
+                            const SizedBox(
+                              width: 30,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            genresText,
-                            style: const TextStyle(
-                              color: Colors.grey,
+                            Text(
+                              genresText,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        movie.overview,
-                        maxLines: 6,
-                        overflow: TextOverflow.ellipsis,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          movie.overview,
+                          maxLines: 6,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 16),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Text(
-                  "More like this",
-                  maxLines: 6,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                  const SizedBox(
+                    height: 30,
                   ),
-                ),
-                FutureBuilder(
-                    future: movieRecommendationModel,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final movie = snapshot.data;
+                  const Text(
+                    "More like this",
+                    maxLines: 6,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  FutureBuilder(
+                      future: movieRecommendationModel,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final movie = snapshot.data;
 
-                        return Expanded(
-                          child: GridView.builder(
+                          return GridView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
+                            padding: EdgeInsets.zero,
                             scrollDirection: Axis.vertical,
                             itemCount: movie!.results.length,
                             gridDelegate:
@@ -161,17 +157,16 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
                                     "$imageUrl${movie.results[index].posterPath}",
                               );
                             },
-                          ),
-                        );
-                      }
-                      return const Text("Something Went wrong");
-                    }),
-                const SizedBox(height: 50),
-              ],
-            );
-          }
-          return const SizedBox();
-        },
+                          );
+                        }
+                        return const Text("Something Went wrong");
+                      }),
+                ],
+              );
+            }
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }
