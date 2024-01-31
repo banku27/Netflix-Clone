@@ -59,6 +59,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Container(
+              color: Colors.blue,
+              height: 27,
+              width: 27,
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
         ],
       ),
       body: SingleChildScrollView(

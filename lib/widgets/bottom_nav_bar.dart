@@ -25,8 +25,8 @@ class BottomNavBar extends StatelessWidget {
                 text: "Search",
               ),
               Tab(
-                icon: Icon(Icons.list),
-                text: "News and Hot",
+                icon: Icon(Icons.photo_library_outlined),
+                text: "New & Hot",
               ),
             ],
             unselectedLabelColor: Color(0xFF999999),

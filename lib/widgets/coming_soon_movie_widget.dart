@@ -44,6 +44,9 @@ class ComingSoonMovieWidget extends StatelessWidget {
                         letterSpacing: 5))
               ],
             ),
+            const SizedBox(
+              width: 10,
+            ),
             Expanded(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

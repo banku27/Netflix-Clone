@@ -74,7 +74,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.',
               logoUrl:
                   "https://s3.amazonaws.com/www-inside-design/uploads/2017/10/strangerthings_feature-983x740.jpg",
-              month: "February",
+              month: "Feb",
               day: "20",
             ),
             ComingSoonMovieWidget(
@@ -84,7 +84,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.',
               logoUrl:
                   "https://logowik.com/content/uploads/images/stranger-things4286.jpg",
-              month: "February",
+              month: "Feb",
               day: "20",
             ),
           ]),
