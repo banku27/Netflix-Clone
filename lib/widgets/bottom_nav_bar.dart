@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/screens/homescreen.dart';
-import 'package:netflix_clone/screens/more_screen.dart';
+import 'package:netflix_clone/screens/news_and_hot.dart';
 import 'package:netflix_clone/screens/search_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -26,7 +26,7 @@ class BottomNavBar extends StatelessWidget {
               ),
               Tab(
                 icon: Icon(Icons.list),
-                text: "More",
+                text: "News and Hot",
               ),
             ],
             unselectedLabelColor: Color(0xFF999999),

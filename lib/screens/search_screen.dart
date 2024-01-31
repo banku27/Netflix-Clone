@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/common/utils.dart';
 import 'package:netflix_clone/models/search_model.dart';
+import 'package:netflix_clone/screens/movie_detailed_screen.dart';
 import 'package:netflix_clone/services/api_services.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -78,9 +79,21 @@ class _SearchScreenState extends State<SearchScreen> {
                         return searchedMovie!.results[index].backdropPath ==
                                 null
                             ? Image.asset("assets/netflix.png")
-                            : CachedNetworkImage(
-                                imageUrl:
-                                    '$imageUrl${searchedMovie?.results[index].backdropPath}',
+                            : InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MovieDetailScreen(
+                                          movieId:
+                                              searchedMovie!.results[index].id),
+                                    ),
+                                  );
+                                },
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      '$imageUrl${searchedMovie?.results[index].backdropPath}',
+                                ),
                               );
                       },
                     ),
