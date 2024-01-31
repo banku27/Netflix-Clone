@@ -132,40 +132,43 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
                       if (snapshot.hasData) {
                         final movie = snapshot.data;
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "More like this",
-                              maxLines: 6,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              padding: EdgeInsets.zero,
-                              scrollDirection: Axis.vertical,
-                              itemCount: movie!.results.length,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                mainAxisSpacing: 15,
-                                childAspectRatio: 1.5 / 2,
-                              ),
-                              itemBuilder: (context, index) {
-                                return CachedNetworkImage(
-                                  imageUrl:
-                                      "$imageUrl${movie.results[index].posterPath}",
-                                );
-                              },
-                            ),
-                          ],
-                        );
+                        return movie!.results.isEmpty
+                            ? const SizedBox()
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "More like this",
+                                    maxLines: 6,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  GridView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    padding: EdgeInsets.zero,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: movie.results.length,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 15,
+                                      childAspectRatio: 1.5 / 2,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return CachedNetworkImage(
+                                        imageUrl:
+                                            "$imageUrl${movie.results[index].posterPath}",
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
                       }
                       return const Text("Something Went wrong");
                     },
