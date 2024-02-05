@@ -42,7 +42,7 @@ class ApiServices {
     endPoint = 'movie/popular';
     final url = '$baseUrl$endPoint$key';
 
-    final response = await http.get(Uri.parse(url));
+    final response = await http.get(Uri.parse(url), headers: {});
     if (response.statusCode == 200) {
       log('success');
       return MovieRecommendationsModel.fromJson(jsonDecode(response.body));

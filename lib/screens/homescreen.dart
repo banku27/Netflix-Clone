@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/models/movie_model.dart';
-import 'package:netflix_clone/models/movie_recommendation_mode.dart';
 import 'package:netflix_clone/models/tv_series_model.dart';
 import 'package:netflix_clone/screens/search_screen.dart';
 import 'package:netflix_clone/services/api_services.dart';
@@ -19,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late Future<MovieModel> upcomingFuture;
   late Future<MovieModel> nowPlaying;
-
   late Future<TvSeriesModel> topRatedShows;
 
   @override
@@ -61,10 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(6),
-            child: Container(
-              color: Colors.blue,
-              height: 27,
-              width: 27,
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                color: Colors.blue,
+                height: 27,
+                width: 27,
+              ),
             ),
           ),
           const SizedBox(
